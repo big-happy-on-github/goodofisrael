@@ -47,16 +47,21 @@
         const API_KEY = "AIzaSyD2WuU36J9ondGmiJkmFGMovj8Ak6Yjwmg";
         const genAI = new GoogleGenerativeAI(API_KEY);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-        
-        const prompt = "Write a story about a magic backpack.";
-        
-        const result = await model.generateContent(prompt);
-        console.log(result.response.text());
-    </script>
-    <script>
-        // Make sure to include these imports:
-        // import { GoogleGenerativeAI } from "@google/generative-ai";
-        
+
+        let prompt;
+        let result;
+        let alreadyStated = [];
+
+        for (let i = 0; i < 10; i++) {
+            if (i == 0) {
+                prompt = "give me the name, just the name, of an israeli startup that is beneficial to the world. No politics or military or anything like that involved. I don't want anything else other than the name"
+            } else {
+                prompt = `give me the name, just the name, of an israeli startup that is not in this list: ${JSON.stringify(alreadyStated)} and is beneficial to the world. No politics or military or anything like that involved. I don't want anything else other than the name`
+            }
+            result = await model.generateContent(prompt);
+            alreadyStated.push(result.response.text());
+        }
+        console.log(alreadyStated);
     </script>
 </body>
 </html>
