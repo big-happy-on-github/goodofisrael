@@ -54,7 +54,7 @@ section {
 
 section h2 {
     font-size: 2rem;
-    margin-bottom: 20px;
+    margin-left: 10%;
 }
 
 section p {
@@ -63,6 +63,7 @@ section p {
     color: #333;
     max-width: 800px;
     margin: 0 auto;
+    margin-left: 10%;
 }
 
 .cta-button {
