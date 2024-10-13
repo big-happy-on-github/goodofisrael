@@ -62,7 +62,7 @@
         
             let result = await model.generateContent(prompt);
             let resultText = result.response.text();
-            resultText = resultText.replace(/\*\*/g, "").replace(/ \\n/g, "");
+            resultText = resultText.replace(/\*\*/g, "").replace(/ \\n/g, "").replace(/ \n/g, "");
             console.log(resultText);
             alreadyStated.push(resultText);
         }
