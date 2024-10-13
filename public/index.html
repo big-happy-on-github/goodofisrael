@@ -53,16 +53,18 @@
         let alreadyStated = [];
 
         for (let i = 0; i < 10; i++) {
+            let prompt;
             if (i == 0) {
-                prompt = "give me the name, just the name, of an israeli startup that is beneficial to the world. I don't want anything else other than the name"
+                prompt = "give me the name, just the name, of an israeli startup that is beneficial to the world. I don't want anything else other than the name";
             } else {
-                prompt = `give me the name, just the name, of an israeli startup that is not in this list: ${JSON.stringify(alreadyStated)} and is beneficial to the world. I don't want anything else other than the name`
+                prompt = `give me the name, just the name, of an israeli startup that is not in this list: ${JSON.stringify(alreadyStated)} and is beneficial to the world. I don't want anything else other than the name`;
             }
-            result = await model.generateContent(prompt);
-            result.replace(/\*\*/g, "");
-            result.replace(/ \\n/g, "");
-            console.log(result.response.text());
-            alreadyStated.push(JSON.stringify(result.response.text()));
+        
+            let result = await model.generateContent(prompt);
+            let resultText = result.response.text();
+            resultText = resultText.replace(/\*\*/g, "").replace(/ \\n/g, "");
+            console.log(resultText);
+            alreadyStated.push(resultText);
         }
         console.log(alreadyStated);
     </script>
