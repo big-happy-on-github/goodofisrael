@@ -58,16 +58,11 @@
             } else {
                 prompt = `give me the name, just the name, of an israeli startup that is not in this list: ${JSON.stringify(alreadyStated)} and is beneficial to the world. I don't want anything else other than the name`
             }
-            for (let i = 0; i < 5; i++) {
-                try {
-                    result = await model.generateContent(prompt);
-                    result.replace(/\*\*/g, "");
-                    result.replace(/ \\n/g, "");
-                    console.log(result.response.text());
-                    alreadyStated.push(JSON.stringify(result.response.text()));
-                    break;
-                } catch {}
-            }
+            result = await model.generateContent(prompt);
+            result.replace(/\*\*/g, "");
+            result.replace(/ \\n/g, "");
+            console.log(result.response.text());
+            alreadyStated.push(JSON.stringify(result.response.text()));
         }
         console.log(alreadyStated);
     </script>
