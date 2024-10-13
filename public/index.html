@@ -58,9 +58,14 @@
             } else {
                 prompt = `give me the name, just the name, of an israeli startup that is not in this list: ${JSON.stringify(alreadyStated)} and is beneficial to the world. I don't want anything else other than the name`
             }
-            result = await model.generateContent(prompt);
-            console.log(result.response.text());
-            alreadyStated.push(JSON.stringify(result.response.text()));
+            while (true) {
+                try {
+                    result = await model.generateContent(prompt);
+                    console.log(result.response.text());
+                    alreadyStated.push(JSON.stringify(result.response.text()));
+                    break;
+                } catch {}
+            }
         }
         console.log(alreadyStated);
     </script>
