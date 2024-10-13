@@ -50,21 +50,21 @@ nav a:hover {
 
 section {
     padding: 60px 0; /* Adjust padding if necessary */
-    padding-left: 10%; /* Adds consistent padding on the left */
-    padding-right: 10%; /* Optional: can add right padding for symmetry */
 }
 
 section h2 {
     font-size: 2rem;
-    margin-left: 0; /* Already aligned with the section */
+    margin-left: 10%;
+    padding-left: 10%;
 }
 
 section p {
     font-size: 1.1rem;
     line-height: 1.6;
     color: #333;
-    margin-left: 0; /* Aligned with the section */
+    margin-left: 10%; /* Aligned with the section */
     margin-top: 20px; /* Add some margin between h2 and p if needed */
+    padding-left: 10%;
 }
 
 .cta-button {
