@@ -34,36 +34,21 @@
     </footer>
 
     <script>
-        async function callGPT4(prompt) {
-            const apiKey = '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';  // Replace with your actual API key
-
-            const url = 'https://api.openai.com/v1/chat/completions';
-            const data = {
-                model: "gpt-4",
-                messages: [
-                    { role: "system", content: "You are a helpful assistant." },
-                    { role: "user", content: prompt }
-                ],
-                max_tokens: 100
-            };
-
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${apiKey}`
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                const result = await response.json();
-                console.log(result.choices[0].message.content);
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-        callGPT4("give me the name, just the name, of a israeli startup that is beneficial to the world. Nothing else, just the name");
+        import OpenAI from "openai";
+        const openai = new OpenAI(apiKey="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");
+        
+        const completion = await openai.chat.completions.create({
+            model: "gpt-4o-mini",
+            messages: [
+                { role: "system", content: "You are a helpful assistant." },
+                {
+                    role: "user",
+                    content: "Write a haiku about recursion in programming.",
+                },
+            ],
+        });
+        
+        console.log(completion.choices[0].message);
     </script>
 </body>
 </html>
