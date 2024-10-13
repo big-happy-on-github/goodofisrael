@@ -33,40 +33,37 @@
         <p>&copy; 2024 Liam Brill. All Rights Reserved.</p>
     </footer>
 
-    <script type="importmap">
-        {
-            "imports": {
-              "@google/generative-ai": "https://esm.run/@google/generative-ai"
+    <script>
+        async function callGPT4(prompt) {
+            const apiKey = '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';  // Replace with your actual API key
+
+            const url = 'https://api.openai.com/v1/chat/completions';
+            const data = {
+                model: "gpt-4",
+                messages: [
+                    { role: "system", content: "You are a helpful assistant." },
+                    { role: "user", content: prompt }
+                ],
+                max_tokens: 100
+            };
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                console.log(result.choices[0].message.content);
+            } catch (error) {
+                console.error('Error:', error);
             }
         }
-    </script>
-    <script type="module">
-        import { GoogleGenerativeAI } from "@google/generative-ai";
-        
-        // Fetch your API_KEY
-        const API_KEY = "AIzaSyCy6gs-37jSfajJi42XDsENIq-_E_oNtjY";
-        const genAI = new GoogleGenerativeAI(API_KEY);
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-        let prompt;
-        let result;
-        let alreadyStated = [];
-
-        for (let i = 0; i < 10; i++) {
-            let prompt;
-            if (i == 0) {
-                prompt = "give me the name, just the name, of a startup based in Israel that is beneficial to the world. I don't want anything else other than the name";
-            } else {
-                prompt = `give me the name, just the name, of a startup based in Israel that is not in this list: ${JSON.stringify(alreadyStated)} and is beneficial to the world. I don't want anything else other than the name`;
-            }
-        
-            let result = await model.generateContent(prompt);
-            let resultText = result.response.text();
-            resultText = resultText.replace(/\*\*/g, "").replace(/ \\n/g, "").replace(/ \n/g, "");
-            console.log(resultText);
-            alreadyStated.push(resultText);
-        }
-        console.log(alreadyStated);
+        callGPT4("give me the name, just the name, of a israeli startup that is beneficial to the world. Nothing else, just the name");
     </script>
 </body>
 </html>
