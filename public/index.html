@@ -59,7 +59,8 @@
                 prompt = `give me the name, just the name, of an israeli startup that is not in this list: ${JSON.stringify(alreadyStated)} and is beneficial to the world. No politics or military or anything like that involved. I don't want anything else other than the name`
             }
             result = await model.generateContent(prompt);
-            alreadyStated.push(result.response.text());
+            console.log(result.response.text());
+            alreadyStated.push(JSON.stringify(result.response.text()));
         }
         console.log(alreadyStated);
     </script>
