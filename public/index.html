@@ -55,9 +55,9 @@
         for (let i = 0; i < 10; i++) {
             let prompt;
             if (i == 0) {
-                prompt = "give me the name, just the name, of an israeli startup that is beneficial to the world. I don't want anything else other than the name";
+                prompt = "give me the name, just the name, of a startup based in Israel that is beneficial to the world. I don't want anything else other than the name";
             } else {
-                prompt = `give me the name, just the name, of an israeli startup that is not in this list: ${JSON.stringify(alreadyStated)} and is beneficial to the world. I don't want anything else other than the name`;
+                prompt = `give me the name, just the name, of a startup based in Israel that is not in this list: ${JSON.stringify(alreadyStated)} and is beneficial to the world. I don't want anything else other than the name`;
             }
         
             let result = await model.generateContent(prompt);
