@@ -33,13 +33,23 @@
         <p>&copy; 2024 Liam Brill. All Rights Reserved.</p>
     </footer>
 
-    
+    <script type="importmap">
+        {
+            "imports": {
+              "@google/generative-ai": "https://esm.run/@google/generative-ai"
+            }
+        }
+    </script>
+    <script type="module">
+        import { GoogleGenerativeAI } from "@google/generative-ai";
+        
+        // Fetch your API_KEY
+        const API_KEY = "AIzaSyD2WuU36J9ondGmiJkmFGMovj8Ak6Yjwmg";
+    </script>
     <script>
-        const { GoogleGenerativeAI } = require("@google/generative-ai");
-
         // Make sure to include these imports:
         // import { GoogleGenerativeAI } from "@google/generative-ai";
-        const genAI = new GoogleGenerativeAI("AIzaSyD2WuU36J9ondGmiJkmFGMovj8Ak6Yjwmg");
+        const genAI = new GoogleGenerativeAI(process.env.API_KEY);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         
         const prompt = "Write a story about a magic backpack.";
