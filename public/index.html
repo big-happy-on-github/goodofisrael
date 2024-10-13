@@ -58,7 +58,7 @@
             } else {
                 prompt = `give me the name, just the name, of an israeli startup that is not in this list: ${JSON.stringify(alreadyStated)} and is beneficial to the world. I don't want anything else other than the name`
             }
-            while (true) {
+            for (let i = 0; i < 5; i++) {
                 try {
                     result = await model.generateContent(prompt);
                     result.replace(/\*\*/g, "");
