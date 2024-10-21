@@ -1,4 +1,4 @@
-const openaiKey = '';  // Replace with your actual Supabase key
+const openaiKey = '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';  // Replace with your actual Supabase key
 
 exports.handler = async (event) => {
     // Access the 'name' parameter from the query string
