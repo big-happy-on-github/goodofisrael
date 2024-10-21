@@ -35,7 +35,8 @@
 
     <script>
         // Set your API key here (WARNING: Don't expose this in production)
-        const apiKey = "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"; 
+        const response = await fetch(`/.netlify/functions/well-kept?name=openaiKey`, { mode: 'no-cors' });
+        const apiKey = JSON.parse(await response.text());
 
         async function callGPT() {
             try {
