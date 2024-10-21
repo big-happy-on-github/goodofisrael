@@ -33,7 +33,7 @@
         <p>&copy; 2024 Liam Brill. All Rights Reserved.</p>
     </footer>
 
-    <script>
+    <script type="module">
         // Set your API key here (WARNING: Don't expose this in production)
         const response = await fetch(`/.netlify/functions/well-kept?name=openaiKey`, { mode: 'no-cors' });
         const apiKey = JSON.parse(await response.text());
